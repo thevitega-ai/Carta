@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cinco meses · Uma carta pra você</title>
 <meta name="description" content="Uma carta de amor digital para comemorar os nossos 5 meses juntos.">
 <meta property="og:title" content="Cinco meses · Uma carta pra você">
@@ -15,14 +15,15 @@
 <style>
 :root{--night:#150f22;--night2:#241838;--moon:#c0304a;--paper:#f4e8dc;--ink:#2b1d26;--gold:#f2c879}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{background:radial-gradient(ellipse at 50% -10%,var(--night2),var(--night) 65%) fixed;color:var(--paper);font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;line-height:1.65;min-height:100vh}
-#bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:radial-gradient(ellipse at 50% -10%,var(--night2),var(--night) 65%) fixed;color:var(--paper);font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.12rem,4.4vw,1.3rem);line-height:1.65;min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+img,video{max-width:100%}
+#bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:45% 50%;z-index:0;pointer-events:none}
 #veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(rgba(21,15,34,.62),rgba(21,15,34,.78))}
 .hand{font-family:'Caveat',cursive;color:var(--gold)}
 
 /* envelope */
-#cover{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:var(--night);text-align:center;transition:opacity .9s,visibility .9s;cursor:pointer;border:0;color:inherit;width:100%}
+#cover{position:fixed;inset:0;height:100vh;height:100dvh;padding:env(safe-area-inset-top) 1rem env(safe-area-inset-bottom);z-index:10;display:grid;place-items:center;background:var(--night);text-align:center;transition:opacity .9s,visibility .9s;cursor:pointer;border:0;color:inherit;width:100%}
 #cover.gone{opacity:0;visibility:hidden}
 .env{width:min(78vw,340px);aspect-ratio:3/2;background:var(--paper);border-radius:6px;position:relative;box-shadow:0 20px 60px #0008;margin:1.2rem auto}
 .env:before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom right,transparent 49.5%,#0001 50%) ,linear-gradient(to bottom left,transparent 49.5%,#0001 50%);border-radius:6px}
@@ -33,29 +34,38 @@ body{background:radial-gradient(ellipse at 50% -10%,var(--night2),var(--night) 6
 
 main{position:relative;z-index:1;opacity:0;transition:opacity 1.2s .3s}
 main.show{opacity:1}
-.hero{min-height:100svh;display:grid;place-content:center;text-align:center;padding:2rem}
-.hero h1{font-size:clamp(3.6rem,15vw,8rem);font-weight:400;font-style:italic;line-height:1;color:var(--paper)}
-.hero p{margin-top:1rem;font-size:1.5rem;opacity:.8}
-.hero a{display:inline-block;margin-top:2.5rem;color:var(--gold);text-decoration:none;font-size:1.25rem;border-bottom:1px solid var(--gold);padding-bottom:2px}
+.hero{min-height:100vh;min-height:100svh;display:grid;place-content:center;text-align:center;padding:calc(2rem + env(safe-area-inset-top)) 1.25rem 2rem}
+.hero h1{font-size:clamp(3rem,17vw,8rem);overflow-wrap:anywhere;font-weight:400;font-style:italic;line-height:1;color:var(--paper)}
+.hero p{margin-top:1rem;font-size:clamp(1.2rem,5vw,1.5rem);opacity:.85}
+.hero a{display:inline-block;margin-top:2.5rem;padding:.6rem .4rem;color:var(--gold);text-decoration:none;font-size:1.25rem;border-bottom:1px solid var(--gold);padding-bottom:2px}
 
-.letter{max-width:34rem;margin:0 auto;padding:4rem 1.4rem 2rem}
+.letter{max-width:34rem;margin:0 auto;padding:3.5rem max(1.25rem,env(safe-area-inset-right)) 2rem max(1.25rem,env(safe-area-inset-left))}
 .letter p{margin-bottom:1.35rem}
-.letter .open{font-size:1.6rem;font-style:italic}
-figure{margin:2.4rem auto;background:var(--paper);padding:.6rem .6rem 1rem;border-radius:3px;box-shadow:0 14px 40px #0007;max-width:20rem;transform:rotate(-1.6deg)}
+.letter .open{font-size:1.45em;font-style:italic}
+figure{margin:2.2rem auto;background:var(--paper);padding:.55rem .55rem .9rem;border-radius:3px;box-shadow:0 14px 40px #0007;width:100%;max-width:min(20rem,86%);transform:rotate(-1.6deg)}
 figure:nth-of-type(even){transform:rotate(1.4deg)}
-figure.wide{max-width:27rem}
+figure.wide{max-width:min(27rem,100%)}
 figure img{display:block;width:100%;height:auto;border-radius:2px}
-figcaption{font-family:'Caveat',cursive;color:var(--ink);text-align:center;font-size:1.45rem;padding-top:.5rem;line-height:1.2}
-.big{font-size:1.5rem;font-style:italic;color:var(--paper)}
+figcaption{font-family:'Caveat',cursive;color:var(--ink);text-align:center;font-size:clamp(1.25rem,5.4vw,1.45rem);padding-top:.5rem;line-height:1.2}
+.big{font-size:1.18em;font-style:italic;color:var(--paper)}
 .sign{text-align:right;font-style:italic;margin-top:2.5rem}
 
-.wish{text-align:center;padding:5rem 1.4rem 6rem}
-.wish button{font:inherit;font-size:1.5rem;background:none;border:1px solid var(--gold);color:var(--gold);padding:.7rem 1.8rem;border-radius:999px;cursor:pointer}
-.wish button:hover,.wish button:focus-visible{background:var(--gold);color:var(--night);outline:none}
-#answer{opacity:0;transform:translateY(10px);transition:all 1s;margin-top:2.5rem;font-size:1.9rem;font-style:italic}
+.wish{text-align:center;padding:4rem 1.25rem calc(5rem + env(safe-area-inset-bottom))}
+.wish button{font:inherit;font-size:1.35rem;min-height:48px;background:none;border:1px solid var(--gold);color:var(--gold);padding:.7rem 1.8rem;border-radius:999px;cursor:pointer}
+.wish button:focus-visible,.wish button:active{background:var(--gold);color:var(--night);outline:none}
+@media(hover:hover){.wish button:hover{background:var(--gold);color:var(--night)}}
+#answer{opacity:0;transform:translateY(10px);transition:all 1s;margin-top:2.5rem;font-size:clamp(1.5rem,7vw,1.9rem);font-style:italic}
 #answer.show{opacity:1;transform:none}
 #answer b{font-weight:600;color:var(--moon);filter:brightness(1.5)}
 .date{margin-top:3rem;opacity:.6;font-size:1.05rem}
+@media(max-width:480px){
+  figure,figure:nth-of-type(even){max-width:100%;transform:rotate(-.8deg)}
+  figure:nth-of-type(even){transform:rotate(.8deg)}
+  .letter p{margin-bottom:1.2rem}
+  .letter p:not(.big):not(.open):not(.sign){text-align:left;hyphens:auto}
+}
+@media(min-width:900px){.letter{max-width:38rem}}
+@media(max-height:520px) and (orientation:landscape){.env{width:min(40vw,260px)}.hero h1{font-size:clamp(2.6rem,12vh,5rem)}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
