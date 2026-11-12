@@ -70,7 +70,7 @@ figcaption{font-family:'Caveat',cursive;color:var(--ink);text-align:center;font-
 </style>
 </head>
 <body>
-<video id="bg" autoplay muted loop playsinline preload="auto" poster="video/poster.jpg" aria-hidden="true"><source src="video/fundo.mp4" type="video/mp4"></video>
+<video id="bg" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" poster="video/poster.jpg" aria-hidden="true"><source src="video/fundo.mp4" type="video/mp4"></video>
 <div id="veil" aria-hidden="true"></div>
 
 <button id="cover" aria-label="Abrir a carta">
@@ -122,9 +122,12 @@ figcaption{font-family:'Caveat',cursive;color:var(--ink);text-align:center;font-
 
 <script>
 const cover=document.getElementById('cover'),main=document.getElementById('main');
-cover.onclick=()=>{cover.classList.add('open');setTimeout(()=>{cover.classList.add('gone');main.classList.add('show')},800)};
-const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
-if(still)document.getElementById('bg').removeAttribute('autoplay');
+const bg=document.getElementById('bg');bg.muted=true;bg.defaultMuted=true;
+const tryPlay=()=>{const p=bg.play();if(p&&p.catch)p.catch(()=>{})};
+tryPlay();
+['touchstart','click','scroll'].forEach(ev=>addEventListener(ev,()=>{if(bg.paused)tryPlay()},{passive:true}));
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)tryPlay()});
+cover.onclick=()=>{tryPlay();cover.classList.add('open');setTimeout(()=>{cover.classList.add('gone');main.classList.add('show')},800)};
 document.getElementById('wishBtn').onclick=e=>{document.getElementById('answer').classList.add('show');e.target.blur()};
 </script>
 </body>
