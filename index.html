@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cinco meses · Uma carta pra você</title>
+<meta name="description" content="Uma carta de amor digital para comemorar os nossos 5 meses juntos.">
+<meta property="og:title" content="Cinco meses · Uma carta pra você">
+<meta property="og:description" content="Desde a estrela cadente até aqui — uma carta pelos nossos 5 meses.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/images/cachoeira.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--night:#150f22;--night2:#241838;--moon:#c0304a;--paper:#f4e8dc;--ink:#2b1d26;--gold:#f2c879}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 50% -10%,var(--night2),var(--night) 65%) fixed;color:var(--paper);font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;line-height:1.65;min-height:100vh}
+#bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
+#veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(rgba(21,15,34,.62),rgba(21,15,34,.78))}
+.hand{font-family:'Caveat',cursive;color:var(--gold)}
+
+/* envelope */
+#cover{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:var(--night);text-align:center;transition:opacity .9s,visibility .9s;cursor:pointer;border:0;color:inherit;width:100%}
+#cover.gone{opacity:0;visibility:hidden}
+.env{width:min(78vw,340px);aspect-ratio:3/2;background:var(--paper);border-radius:6px;position:relative;box-shadow:0 20px 60px #0008;margin:1.2rem auto}
+.env:before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom right,transparent 49.5%,#0001 50%) ,linear-gradient(to bottom left,transparent 49.5%,#0001 50%);border-radius:6px}
+.flap{position:absolute;left:0;right:0;top:0;height:58%;background:#e7d3c3;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s}
+.seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:var(--moon);color:var(--paper);display:grid;place-items:center;font-size:1.5rem;z-index:2;box-shadow:0 4px 12px #0006}
+#cover.open .flap{transform:rotateX(180deg)}
+#cover small{font-size:1.1rem;opacity:.75}
+
+main{position:relative;z-index:1;opacity:0;transition:opacity 1.2s .3s}
+main.show{opacity:1}
+.hero{min-height:100svh;display:grid;place-content:center;text-align:center;padding:2rem}
+.hero h1{font-size:clamp(3.6rem,15vw,8rem);font-weight:400;font-style:italic;line-height:1;color:var(--paper)}
+.hero p{margin-top:1rem;font-size:1.5rem;opacity:.8}
+.hero a{display:inline-block;margin-top:2.5rem;color:var(--gold);text-decoration:none;font-size:1.25rem;border-bottom:1px solid var(--gold);padding-bottom:2px}
+
+.letter{max-width:34rem;margin:0 auto;padding:4rem 1.4rem 2rem}
+.letter p{margin-bottom:1.35rem}
+.letter .open{font-size:1.6rem;font-style:italic}
+figure{margin:2.4rem auto;background:var(--paper);padding:.6rem .6rem 1rem;border-radius:3px;box-shadow:0 14px 40px #0007;max-width:20rem;transform:rotate(-1.6deg)}
+figure:nth-of-type(even){transform:rotate(1.4deg)}
+figure.wide{max-width:27rem}
+figure img{display:block;width:100%;height:auto;border-radius:2px}
+figcaption{font-family:'Caveat',cursive;color:var(--ink);text-align:center;font-size:1.45rem;padding-top:.5rem;line-height:1.2}
+.big{font-size:1.5rem;font-style:italic;color:var(--paper)}
+.sign{text-align:right;font-style:italic;margin-top:2.5rem}
+
+.wish{text-align:center;padding:5rem 1.4rem 6rem}
+.wish button{font:inherit;font-size:1.5rem;background:none;border:1px solid var(--gold);color:var(--gold);padding:.7rem 1.8rem;border-radius:999px;cursor:pointer}
+.wish button:hover,.wish button:focus-visible{background:var(--gold);color:var(--night);outline:none}
+#answer{opacity:0;transform:translateY(10px);transition:all 1s;margin-top:2.5rem;font-size:1.9rem;font-style:italic}
+#answer.show{opacity:1;transform:none}
+#answer b{font-weight:600;color:var(--moon);filter:brightness(1.5)}
+.date{margin-top:3rem;opacity:.6;font-size:1.05rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<video id="bg" autoplay muted loop playsinline preload="auto" poster="video/poster.jpg" aria-hidden="true"><source src="video/fundo.mp4" type="video/mp4"></video>
+<div id="veil" aria-hidden="true"></div>
+
+<button id="cover" aria-label="Abrir a carta">
+  <div>
+    <div class="hand" style="font-size:1.8rem">uma carta pra você</div>
+    <div class="env"><div class="flap"></div><div class="seal">♥</div></div>
+    <small>toque para abrir</small>
+  </div>
+</button>
+
+<main id="main">
+  <section class="hero">
+    <div class="hand" style="font-size:1.7rem">para o amor da minha vida</div>
+    <h1>Cinco meses</h1>
+    <p>desde a estrela cadente até aqui</p>
+    <div><a href="#carta">ler a carta ↓</a></div>
+  </section>
+
+  <article class="letter" id="carta">
+        <p class="open">Meu amor,</p>
+    <p>Eu amo você desde aquela estrela cadente que te contei que vi, desde o dia em que olhamos juntos para a lua vermelha. Desde então, sinto que meu destino te pertence.</p>
+    <p>Amo você desde a primeira noite em que dormimos de Hello Kitty, bebemos demais e eu precisava tanto daquilo. Desde quando jogamos Minecraft, tiramos fotos depois de ajustar sua skin, você andando a cavalo e de barco, e eu te ensinando a pescar. Desde a primeira vez que treinamos juntos e daquele sorriso que você colocou no meu rosto.</p>
+    <p>Desde você tirando fotos no puff do trabalho até estar sentadinha, de cócoras, no meu sofá. Desde a primeira vez que fomos ao sítio e você estava tão feliz, naquele sol, com medo do macaquinho. Desde os pés na água, a fogueira e aquela cachoeira.</p>
+    <figure><img src="images/fogueira.jpg" alt="Pés aquecidos perto de uma fogueira à noite" loading="lazy"><figcaption>a fogueira</figcaption></figure>
+    <figure><img src="images/cachoeira.jpg" alt="Nós dois abraçados numa pedra à beira do rio" loading="lazy"><figcaption>aquela cachoeira</figcaption></figure>
+    <p>Desde andar de bicicleta e cair juntos, com aquele seu cabelo preto, escuro e brilhoso. Desde seus dedinhos até seus olhos lindos. Desde o pedido no motel, porque eu estava tão ansioso que não consegui esperar até o zoológico. E, no zoológico, você com a pulseirinha e a bandeirinha no rosto.</p>
+    <figure><img src="images/bike.jpg" alt="Caminhando com a bicicleta numa trilha na mata" loading="lazy"><figcaption>de bicicleta, pela trilha</figcaption></figure>
+    <p>Desde comer pizza e jogar LoL de pijama na minha sala, tomando cerveja. Desde ir ao parque, tentar nos encontrar e explorar lugares novos. Desde ver você andando de bicicleta novamente, desde o Bubs, suas caretas e nossas risadas.</p>
+    <figure><img src="images/lol.jpg" alt="Jogando LoL no computador" loading="lazy"><figcaption>pizza, pijama e LoL</figcaption></figure>
+    <p>Desde os dias no sítio, os passeios de barco, o Dunas e aquele lamen bonitão. Desde ver você linda de vestido na minha frente ou toda fofinha, coberta até a cabeça, igual ao Gargamel.</p>
+    <figure class="wide"><img src="images/barco.jpg" alt="Nós dois de colete salva-vidas num barco no lago" loading="lazy"><figcaption>de barco, só nós dois</figcaption></figure>
+    <figure class="wide"><img src="images/lamen.jpg" alt="Selfie nossa no restaurante de lamen" loading="lazy"><figcaption>um lamen bonitão</figcaption></figure>
+    <figure><img src="images/gargamel.jpg" alt="Eu coberto com a manta marrom e o capuz, de frente pro computador" loading="lazy"><figcaption>igual ao Gargamel</figcaption></figure>
+    <p>Mas a verdade é que eu amo você desde muito antes de tudo isso. Desde as nossas idas de trem, nossas partidas de Mobile Legends e LoL, e de tantos outros momentos que talvez pareçam pequenos, mas que significam tanto para mim.</p>
+    <p>Eu amo cada versão sua que conheci, cada lugar que exploramos, cada risada que compartilhamos e até as pequenas coisas que talvez você nem perceba que guardo comigo.</p>
+    <p class="big">Porque, quando penso em nós, não me lembro apenas de grandes acontecimentos. Lembro de todos esses pequenos instantes em que, sem perceber, você foi se tornando meu lugar favorito no mundo.</p>
+    <figure><img src="images/selfie.jpg" alt="Selfie nossa de noite" loading="lazy"><figcaption>meu lugar favorito no mundo</figcaption></figure>
+    <p>Feliz 5 meses, meu amor.</p>
+    <p class="sign">Com todo o meu amor,<br><span class="hand" style="font-size:2rem">Vinicius</span></p>
+  </article>
+
+  <section class="wish">
+    <button id="wishBtn">faz um pedido? ✦</button>
+    <p id="answer">O meu já se realizou.<br><b>Foi você.</b></p>
+    <p class="date">12 · 11 · 2026 — cinco meses de nós</p>
+    <p class="date">by Mantega</p>
+  </section>
+</main>
+
+<script>
+const cover=document.getElementById('cover'),main=document.getElementById('main');
+cover.onclick=()=>{cover.classList.add('open');setTimeout(()=>{cover.classList.add('gone');main.classList.add('show')},800)};
+const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(still)document.getElementById('bg').removeAttribute('autoplay');
+document.getElementById('wishBtn').onclick=e=>{document.getElementById('answer').classList.add('show');e.target.blur()};
+</script>
+</body>
+</html>
